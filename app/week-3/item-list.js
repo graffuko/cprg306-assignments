@@ -1,7 +1,7 @@
 import React from 'react';
 import Item from './item';
 
-const ItemList = () => {
+const ItemList = (name, quantity, category) => {
   const items = [
     {
       name: "milk, 4 L 🥛",

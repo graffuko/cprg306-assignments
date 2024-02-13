@@ -11,7 +11,7 @@ const Item = ({ name, quantity, category }) => {
 };
 
 export default Item;
-import React from 'react';
+
 
 
 
