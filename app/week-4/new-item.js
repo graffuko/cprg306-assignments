@@ -1,5 +1,6 @@
+'use client';
 import React, { useState } from 'react';
-import { useClient } from 'client'; // Assuming useClient is a custom hook
+
 
 const NewItem = () => {
   const [name, setName] = useState("");
@@ -24,9 +25,9 @@ const NewItem = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-sm mx-auto">
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8">
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+        <label className="block text-grey-700 text-sm font-bold mb-2" htmlFor="name">
           Name:
         </label>
         <input
@@ -79,7 +80,7 @@ const NewItem = () => {
       <div className="flex justify-center">
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
           Submit
         </button>

@@ -1,5 +1,4 @@
-import React from 'react';
-import NewItem from './NewItem';
+import NewItem from './new-item';
 
 const Page = () => {
   return (
