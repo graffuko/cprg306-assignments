@@ -4,21 +4,18 @@ import Item from './item';
 
 const ItemList = ({ items }) => { // Add items prop
   const [sortBy, setSortBy] = useState("name");
+  const [sortedItems, setSortedItems] = useState(items); // Define sortedItems state
 
   const handleSortName = () => {
-    setSortBy("name");
-    // Create a copy of items array and sort it by name
-    const sortedItems = [...items].sort((a, b) => a.name.localeCompare(b.name));
-    // Update items state with sortedItems
-    setItems(sortedItems);
+    const sortedByName = [...items].sort((a, b) => a.name.localeCompare(b.name));
+    setSortedItems(sortedByName); // Update sortedItems state
+    setSortBy("name"); // Update sortBy state
   };
 
   const handleSortCategory = () => {
-    setSortBy("category");
-    // Create a copy of items array and sort it by category
-    const sortedItems = [...items].sort((a, b) => a.category.localeCompare(b.category));
-    // Update items state with sortedItems
-    setItems(sortedItems);
+    const sortedByCategory = [...items].sort((a, b) => a.category.localeCompare(b.category));
+    setSortedItems(sortedByCategory); // Update sortedItems state
+    setSortBy("category"); // Update sortBy state
   };
 
   return (
@@ -37,8 +34,8 @@ const ItemList = ({ items }) => { // Add items prop
           Sort by Category
         </button>
       </div>
-      {/* Render items array instead of itemsData */}
-      {items.map((item, index) => (
+      {/* Render sortedItems instead of items */}
+      {sortedItems.map((item, index) => (
         <Item key={index} name={item.name} quantity={item.quantity} category={item.category} />
       ))}
     </div>
@@ -46,5 +43,6 @@ const ItemList = ({ items }) => { // Add items prop
 };
 
 export default ItemList;
+
 
 
