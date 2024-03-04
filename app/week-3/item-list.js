@@ -68,7 +68,7 @@ const ItemList = (name, quantity, category) => {
   return (
     <div>
       {items.map((item, index) => (
-        <Item key={index} item={item} />
+        <Item key={index} name={item.name} quantity={item.quantity} category={item.category}/>
       ))}
     </div>
   );
