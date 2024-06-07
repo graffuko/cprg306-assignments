@@ -1,9 +1,7 @@
 
 
-
-export default function Item({name, quantity, category}) {
-
-    let {name, quantity, category} = item;
+export default function Item({ item }) {
+    let { name, quantity, category } = item;
 
     return (
         <li className="bg-gray-200 p-4 rounded-md">
