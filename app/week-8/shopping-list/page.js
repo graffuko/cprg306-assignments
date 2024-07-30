@@ -1,22 +1,38 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ItemList from './item-list';
 import NewItem from './new-item';
 import MealIdeas from './meal-ideas';
-import itemsData from './items.json';
+import { getItems, addItem } from '@/app/week-10/_services/shopping-list-service';
+import { useAuth } from '@/app/week-10/_utils/auth-context';
 
 export default function Page() {
-  const [items, setItems] = useState(itemsData);
+  const [items, setItems] = useState([]);
   const [selectedItemName, setSelectedItemName] = useState('');
+  const { user } = useAuth();
 
-  const handleAddItem = (item) => {
-    setItems([...items, item]);
+  const loadItems = async () => {
+    if (user) {
+      const fetchedItems = await getItems(user.uid);
+      setItems(fetchedItems);
+    }
+  };
+
+  useEffect(() => {
+    loadItems();
+  }, [user]);
+
+  const handleAddItem = async (item) => {
+    if (user) {
+      const newItemId = await addItem(user.uid, item);
+      const newItem = { id: newItemId, ...item };
+      setItems([...items, newItem]);
+    }
   };
 
   const handleItemSelect = (item) => {
-    // Clean up the item name
     const cleanedName = item.name
       .split(',')[0]
       .trim()
@@ -38,4 +54,3 @@ export default function Page() {
     </main>
   );
 }
-
