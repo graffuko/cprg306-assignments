@@ -1,16 +1,11 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Item from './item';
 
-export default function ItemList( { items= [] } ) {
+export default function ItemList({ items = [], onItemSelect }) {
   const [sortBy, setSortBy] = useState('name');
 
-
-  useEffect(() => {
-    console.log("Items: ", items);
-  }, [items]);
-  
   const sortedItems = [...items].sort((a, b) => {
     if (sortBy === 'name') {
       return a.name.localeCompare(b.name);
@@ -41,6 +36,7 @@ export default function ItemList( { items= [] } ) {
           <Item
             key={item.id}
             item={item}
+            onSelect={onItemSelect}
           />
         ))}
       </ul>
